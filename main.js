@@ -3,15 +3,34 @@ const saveButton = document.getElementById('saveToMemory');
 const loadButton = document.getElementById('loadFromMemory');
 const container = document.querySelector('.container');
 
-refreshButton.addEventListener('click', fetchData);
-saveButton.addEventListener('click', saveData);
-loadButton.addEventListener('click', loadData);
-
-async function fetchData() {
+refreshButton.addEventListener('click', async () => {
     const response = await fetch('https://jsonplaceholder.typicode.com/todos');
     const data = await response.json();
     renderData(data);
-}
+});
+// async function fetchData() {
+//         const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+//         const data = await response.json();
+//         renderData(data);
+// }
+
+saveButton.addEventListener('click', async () => {
+    const data = container.innerHTML;
+    localStorage.setItem('savedData', data);
+});
+// function saveData() {
+//     const data = container.innerHTML;
+//     localStorage.setItem('savedData', data);
+// }
+
+loadButton.addEventListener('click', () => {
+    const savedData = JSON.parse(localStorage.getItem('savedData'));
+    container.innerHTML = savedData;
+});
+// function loadData() {
+//     const savedData = JSON.parse(localStorage.getItem('savedData'));
+//     container.innerHTML = savedData;
+// }
 
 function renderData(data) {
     container.innerHTML = '';
@@ -34,14 +53,4 @@ function renderData(data) {
         return listItem;
     });
     container.append(...renderedItems);
-}
-
-function saveData() {
-    const data = container.innerHTML;
-    localStorage.setItem('savedData', data);
-}
-
-function loadData() {
-    const savedData = JSON.parse(localStorage.getItem('savedData'));
-    container.innerHTML = savedData;
 }
