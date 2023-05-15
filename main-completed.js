@@ -1,6 +1,6 @@
-const refreshBtn = document.querySelector("#refreshBtn");
-const saveMemoryBtn = document.querySelector("#saveMemory");
-const loadMemoryBtn = document.querySelector("#loadMemory");
+const refreshBtn = document.querySelector("#refresh");
+const saveMemoryBtn = document.querySelector("#saveToMemory");
+const loadMemoryBtn = document.querySelector("#loadFromMemory");
 const container = document.querySelector(".container");
 
 const API_LINK = "https://jsonplaceholder.typicode.com/todos";
